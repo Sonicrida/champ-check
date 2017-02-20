@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
+
+  com
+
   render() {
     return (
       <div className="App">
@@ -11,8 +15,24 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          <SummonerStats />
         </p>
+      </div>
+    );
+  }
+}
+
+class SummonerStats extends Component {
+  render() {
+
+    axios.get('https://na.api.pvp.net/api/lol/na/v1.3/stats/by-summoner/20873517/ranked?season=SEASON2017&api_key=9a7252b5-2041-40c4-8404-856165308ef0')
+    .then(function (response) {
+      console.log(response.data.champions);
+    });
+
+    return (
+      <div className="Summoner-stats">
+        squad
       </div>
     );
   }
