@@ -57,10 +57,12 @@ class SummonerStats extends Component {
 
 
 
-    /*axios.get('https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/sonicrida?api_key=9a7252b5-2041-40c4-8404-856165308ef0')
+    axios.get('https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/sonicrida?api_key=9a7252b5-2041-40c4-8404-856165308ef0')
     .then(function (response) {
-      console.log(response);
-    });*/
+      //console.log(response);
+    }).catch(function (error) {
+      console.log(error);
+    });
 
 
 
