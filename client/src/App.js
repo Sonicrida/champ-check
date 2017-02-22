@@ -35,40 +35,51 @@ class SummonerStats extends Component {
   }
 
   componentDidMount() {
-    axios.get('https://na.api.pvp.net/api/lol/na/v1.3/stats/by-summoner/20873517/ranked?season=SEASON2017&api_key=9a7252b5-2041-40c4-8404-856165308ef0')
+
+    axios.get('api/summonerName?&summonerName=Sonicrida')
     .then(response => {
-      const champData = response.data.champions.sort((a, b) => (
-        b.stats.totalSessionsWon - a.stats.totalSessionsWon
-      ));
-      const summId = response.data.summonerId;
-      console.log(champData);
+
       this.setState({
-        champList: champData,
-        summonerName:summId
-       });
+        summonerName: 'Sonicrida',
+      });
 
+      axios.get('api/summonerStats?&summonerId=' + response.data.sonicrida.id)
+      .then(response => {
+        console.log("starting to recieve data");
+        console.log(response.data);
 
-    }).catch(function (error) {
-      console.log(error);
+        let champData = response.data.champions.sort((a, b) => (
+          b.stats.totalSessionsWon - a.stats.totalSessionsWon
+        ));
+
+        console.log(champData);
+
+        this.setState({
+          champList: champData,
+        });
+
+      });
+
     });
+
   }
 
   render() {
 
 
 
-    axios.get('https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/sonicrida?api_key=9a7252b5-2041-40c4-8404-856165308ef0')
+    /*axios.get('https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/sonicrida?api_key=9a7252b5-2041-40c4-8404-856165308ef0')
     .then(function (response) {
       //console.log(response);
     }).catch(function (error) {
       console.log(error);
-    });
+    });*/
 
 
 
     return (
       <div className="Summoner-stats">
-        {this.state.summonerName} = Sonicrida
+        {this.state.summonerName}
         <ul>
           {this.state.champList.map(champ =>
 
