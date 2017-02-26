@@ -3,6 +3,7 @@ import axios from 'axios';
 
 
 const app = express();
+const apiKey = '9a7252b5-2041-40c4-8404-856165308ef0';
 
 app.get('/api/summonerName/', (req, res) => {
 
@@ -11,7 +12,7 @@ app.get('/api/summonerName/', (req, res) => {
   //console.log(req.query.summonerName.toLowerCase());
   let summonerName = req.query.summonerName.toLowerCase();
 
-  axios.get('https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/' + summonerName + '?api_key=9a7252b5-2041-40c4-8404-856165308ef0')
+  axios.get('https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/' + summonerName + '?api_key=' + apiKey)
   .then(function (response) {
     summoner = response.data;
     //console.log(summoner);
@@ -29,7 +30,7 @@ app.get('/api/summonerStats/', (req, res) => {
 
   let summonerId = req.query.summonerId;
 
-  axios.get('https://na.api.pvp.net/api/lol/na/v1.3/stats/by-summoner/' + summonerId + '/ranked?season=SEASON2017&api_key=9a7252b5-2041-40c4-8404-856165308ef0')
+  axios.get('https://na.api.pvp.net/api/lol/na/v1.3/stats/by-summoner/' + summonerId + '/ranked?season=SEASON2017&api_key=' + apiKey)
   .then(function (response) {
     champData = response.data;
     res.send(champData);
