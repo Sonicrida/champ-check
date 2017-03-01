@@ -25,17 +25,16 @@ class App extends Component {
 class SummonerStats extends Component {
 
   constructor(props) {
-
     super(props);
-
     this.state = {
       summonerName: '',
       rankedChampList: [],
     };
-
+    this.handleChange = this.handleChange.bind(this);
+    this.updateStats = this.updateStats.bind(this);
   }
 
-  componentDidMount() {
+  /*componentWillMount() {
 
     axios.get('api/summonerName?&summonerName=Sonicrida')
     .then(response => {
@@ -63,6 +62,22 @@ class SummonerStats extends Component {
 
     });
 
+  }*/
+
+  handleChange(event) {
+
+
+
+    this.setState({
+      summonerName: event.target.value
+    });
+
+  }
+
+  updateStats(event) {
+
+    console.log(this.state.SummonerName + "is the current name");
+    event.preventDefault();
   }
 
   render() {
@@ -72,24 +87,17 @@ class SummonerStats extends Component {
     let formattedChampList = [];
 
     champList.forEach(function(item, index) {
-      console.log(item);
+      //console.log(item);
       formattedChampList[item.id] = item.name;
     });
 
-    // formattedChampList = champList.map(function(champ) {
-    //   let formattedChamp = [];
-    //   formattedChamp[champ.id] = champ.name;
-    //   //console.log(formattedChamp[champ.id]);
-    //   return formattedChamp;
-    // });
-    //
-    // console.log(formattedChampList);
-
-
-
+    console.log(this.state.summonerName);
 
     return (
       <div className="Summoner-stats">
+
+        
+
         {this.state.summonerName}
         <ul>
           {this.state.rankedChampList.map(champ =>
