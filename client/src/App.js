@@ -30,20 +30,32 @@ class SummonerStats extends Component {
       summonerName: '',
       rankedChampList: [],
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.enterSummonerName = this.enterSummonerName.bind(this);
     this.updateStats = this.updateStats.bind(this);
   }
 
-  /*componentWillMount() {
+  componentWillMount() {
 
-    axios.get('api/summonerName?&summonerName=Sonicrida')
+  }
+
+  enterSummonerName(event) {
+    this.setState({
+      summonerName: event.target.value
+    });
+  }
+
+  updateStats(event) {
+
+    axios.get('api/summonerName?&summonerName=' + this.state.summonerName.toLowerCase())
     .then(response => {
 
-      this.setState({
-        summonerName: 'Sonicrida',
-      });
+      console.log(response);
 
-      axios.get('api/summonerStats?&summonerId=' + response.data.sonicrida.id)
+      /*this.setState({
+        summonerName: 'Sonicrida',
+      });*/
+
+      axios.get('api/summonerStats?&summonerId=' + response.data[this.state.summonerName.toLowerCase().replace(/\s/g,'')].id)
       .then(response => {
         //console.log("starting to recieve data");
         //console.log(response.data);
@@ -62,48 +74,35 @@ class SummonerStats extends Component {
 
     });
 
-  }*/
-
-  handleChange(event) {
-
-
-
-    this.setState({
-      summonerName: event.target.value
-    });
-
-  }
-
-  updateStats(event) {
-
-    console.log(this.state.SummonerName + "is the current name");
     event.preventDefault();
   }
 
   render() {
 
-
     //console.log(champList);
     let formattedChampList = [];
 
     champList.forEach(function(item, index) {
-      //console.log(item);
-      formattedChampList[item.id] = item.name;
-    });
+      if (item.id != 0) {
 
-    console.log(this.state.summonerName);
+        formattedChampList[item.id] = item.name;
+      }
+    });
 
     return (
       <div className="Summoner-stats">
 
-        
+        <form onSubmit={this.updateStats}>
+          <label>
+            Summoner Name:
+            <input type="text" value={this.state.summonerName} onChange={this.enterSummonerName}/>
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
 
         {this.state.summonerName}
         <ul>
           {this.state.rankedChampList.map(champ =>
-
-
-
             <li key={champ.id}>{formattedChampList[champ.id]} = Wins: {champ.stats.totalSessionsWon} Winrate = {Math.round((champ.stats.totalSessionsWon / champ.stats.totalSessionsPlayed * 100))}%</li>
           )}
         </ul>
