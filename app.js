@@ -1,9 +1,11 @@
 import express from 'express';
 import axios from 'axios';
+import config from './config'
 
 
 const app = express();
-const apiKey = '9a7252b5-2041-40c4-8404-856165308ef0';
+const apiKey = config.API_KEY;
+
 
 app.get('/api/summonerName/', (req, res) => {
 
