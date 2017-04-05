@@ -34,10 +34,6 @@ class SummonerStats extends Component {
     this.updateStats = this.updateStats.bind(this);
   }
 
-  componentWillMount() {
-
-  }
-
   enterSummonerName(event) {
     this.setState({
       summonerName: event.target.value
