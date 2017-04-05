@@ -100,12 +100,21 @@ class SummonerStats extends Component {
         <ul>
           {this.state.rankedChampList.map(champ =>
 
-            <li key={champ.id}>{champ.id}{formattedChampList[champ.id]} = Wins =  {champ.stats.totalSessionsWon} | Losses = {champ.stats.totalSessionsPlayed - champ.stats.totalSessionsWon} | Winrate = {Math.round((champ.stats.totalSessionsWon / champ.stats.totalSessionsPlayed * 100))}%</li>
+            <ChampStats champId={champ.id} champName={formattedChampList[champ.id]} gamesWon={champ.stats.totalSessionsWon} gamesPlayed={champ.stats.totalSessionsPlayed} />
+
+            
 
           )}
         </ul>
       </div>
     );
+  }
+}
+
+class ChampStats extends Component {
+  render() {
+    
+    return <li key={this.props.champId}> {this.props.champId} {this.props.champName} = Wins = {this.props.gamesWon} | Losses = {this.props.gamesPlayed - this.props.gamesWon} | Winrate = {Math.round((this.props.gamesWon / this.props.gamesPlayed * 100))}%</li>
   }
 }
 
