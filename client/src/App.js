@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import champList from './champIds'
+import ChampStats from './ChampStats';
 
 class App extends Component {
 
@@ -111,11 +112,6 @@ class SummonerStats extends Component {
   }
 }
 
-class ChampStats extends Component {
-  render() {
-    
-    return <li key={this.props.champId}> {this.props.champId} {this.props.champName} = Wins = {this.props.gamesWon} | Losses = {this.props.gamesPlayed - this.props.gamesWon} | Winrate = {Math.round((this.props.gamesWon / this.props.gamesPlayed * 100))}%</li>
-  }
-}
+
 
 export default App;
