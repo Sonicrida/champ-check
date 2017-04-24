@@ -1,6 +1,7 @@
 import express from 'express';
 import axios from 'axios';
 import config from './config'
+const path = require('path');
 
 
 const app = express();
@@ -39,6 +40,13 @@ app.get('/api/summonerStats/', (req, res) => {
   });
 
 
+});
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('/', function(req, res) {
+  res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
+  console.log("Squad");
 });
 
 
