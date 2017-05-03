@@ -3,9 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import SummonerStats from './SummonerStats';
 
-
 function App() {
-
     return (
       <div className="App">
         <div className="App-header">
@@ -18,11 +16,5 @@ function App() {
         <SummonerStats />
       </div>
     );
-
 }
-
-
-
-
-
 export default App;
