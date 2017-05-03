@@ -60,7 +60,7 @@ class SummonerStats extends Component {
     let formattedChampList = [];
 
     champList.forEach(function(item, index) {
-      if (item.id != 0) {
+      if (item.id !== 0) {
 
         formattedChampList[item.id] = item.name;
       }
@@ -82,8 +82,6 @@ class SummonerStats extends Component {
           {this.state.rankedChampList.map(champ =>
 
             <ChampStats champId={champ.id} champName={formattedChampList[champ.id]} gamesWon={champ.stats.totalSessionsWon} gamesPlayed={champ.stats.totalSessionsPlayed} />
-
-            
 
           )}
         </ul>
